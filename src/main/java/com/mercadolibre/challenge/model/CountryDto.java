@@ -9,26 +9,22 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CountryInformation implements Serializable {
+public class CountryDto implements Serializable {
 
     private String ip;
-    @JsonProperty("fecha_actual")
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    private LocalDateTime date;
-    @JsonProperty("distancia_estimada")
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    private Double distanciaEstimada;
+
     @JsonProperty("country_code")
     private String countryCode;
+
     @JsonProperty("country_name")
     private String countryName;
+
     private double latitude;
     private double longitude;
     private LocationDTO location;
