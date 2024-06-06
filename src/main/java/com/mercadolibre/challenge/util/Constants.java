@@ -10,8 +10,9 @@ public enum Constants {
     ES("es"),
     INVALID_IP_ADDRESS("Invalid ip address"),
     INVALID_ACCESS_KEY("Invalid access key"),
-    INVALID_FIELDS("Invalid fields"),
-    UNKNOWN_ERROR_CODE("Unknown error code");
+    INVALID_IP_FORMAT("Invalid IP address format"),
+    UNKNOWN_ERROR("Ocurrió un error inesperado"),
+    COUNTRY_NOT_FOUND("No se encontraron registros en la base de datos");
 
     private final String msg;
 

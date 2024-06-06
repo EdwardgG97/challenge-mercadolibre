@@ -1,7 +1,5 @@
 package com.mercadolibre.challenge.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,7 +13,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CountryDto implements Serializable {
+public class CountryDTO implements Serializable {
 
     private String ip;
 
@@ -28,7 +26,6 @@ public class CountryDto implements Serializable {
     private double latitude;
     private double longitude;
     private LocationDTO location;
-    @JsonIgnore
     private ErrorDTO error;
 
     @Getter
@@ -48,6 +45,7 @@ public class CountryDto implements Serializable {
     @Setter
     public static class ErrorDTO {
         private Integer code;
+        private String info;
     }
 }
 

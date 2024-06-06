@@ -11,7 +11,7 @@ import java.util.List;
 @Setter
 @Getter
 @Entity
-@Table(name = "country")
+@Table(name = "country", indexes = @Index(name = "idx_distance", columnList = "distance"))
 public class CountryEntity implements Serializable {
 
     @Id
@@ -34,23 +34,5 @@ public class CountryEntity implements Serializable {
 
     @OneToMany(mappedBy = "country", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<LanguageEntity> languagesEntity;
-
-    @Setter
-    @Getter
-    @Entity
-    @Table(name = "language")
-    public static class LanguageEntity implements Serializable {
-
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
-
-        private String code;
-        private String name;
-
-        @ManyToOne(fetch = FetchType.LAZY)
-        @JoinColumn(name = "country_id")
-        private CountryEntity country;
-    }
 
 }

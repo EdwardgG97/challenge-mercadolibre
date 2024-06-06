@@ -1,30 +1,53 @@
 package com.mercadolibre.challenge.mapper;
 
 import com.mercadolibre.challenge.Entity.CountryEntity;
-import com.mercadolibre.challenge.model.CountryDto;
-import com.mercadolibre.challenge.model.CountryDtoOut;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
-import org.mapstruct.factory.Mappers;
+import com.mercadolibre.challenge.Entity.LanguageEntity;
+import com.mercadolibre.challenge.model.CountryDTO;
+import com.mercadolibre.challenge.model.CountryResponseDTO;
+import com.mercadolibre.challenge.model.LanguageResponseDTO;
+import com.mercadolibre.challenge.util.Utils;
+import org.springframework.stereotype.Component;
 
-@Mapper
-public interface CountryMapper {
+import java.time.LocalDateTime;
+import java.util.stream.Collectors;
 
-    CountryMapper INSTANCE = Mappers.getMapper(CountryMapper.class);
+@Component
+public class CountryMapper {
 
-    /*
-    @Mappings({
-            @Mapping(target = "languages", source = "languagesEntity"),
-            @Mapping(target = "distance", expression = "java(entity.getEstimatedDistance().toString().concat(\" Kms\"))")
-    })
-    CountryDtoOut countryToCountryDtoOut(CountryEntity entity);
+    public CountryResponseDTO entityToDto(CountryEntity entity) {
+        return new CountryResponseDTO(
+                entity.getIp(),
+                Utils.formatDate(entity.getCreate()),
+                Utils.formatDouble(entity.getDistance()).concat(" km"),
+                entity.getCountryCode(),
+                entity.getCountryName(),
+                entity.getLatitude(),
+                entity.getLongitude(),
+                entity.getLanguagesEntity().stream()
+                        .map(languageEntity -> new LanguageResponseDTO(
+                                languageEntity.getCode(),
+                                languageEntity.getName()
+                        )).collect(Collectors.toList())
+                );
+    }
 
-    @Mappings({
-            @Mapping(target = "languagesEntity", source = "location.languages"),
-            @Mapping(target = "create", expression = "java(LocalDateTime.now())", dateFormat = "yyyy-MM-dd HH:mm:ss"),
-            @Mapping(target = "distance", expression = "java(Utils.calculateDistance(countryDto.getLatitude(), countryDto.getLongitude()))")
-    })
-    CountryEntity dtoToEntity(CountryDto countryDto);
-    */
+    public CountryEntity dtoToEntity(CountryDTO dto) {
+        var entity = new CountryEntity();
+        entity.setIp(dto.getIp());
+        entity.setCreate(LocalDateTime.now());
+        entity.setDistance(Utils.calculateDistance(dto.getLatitude(), dto.getLongitude()));
+        entity.setCountryCode(dto.getCountryCode());
+        entity.setCountryName(dto.getCountryName());
+        entity.setLatitude(dto.getLatitude());
+        entity.setLongitude(dto.getLongitude());
+        entity.setLanguagesEntity(dto.getLocation().getLanguages().stream()
+                .map(languageDTO -> {
+            var languageEntity = new LanguageEntity();
+            languageEntity.setCode(languageDTO.getCode());
+            languageEntity.setName(languageDTO.getName());
+            languageEntity.setCountry(entity);
+            return languageEntity;
+        }).collect(Collectors.toList()));
+        return entity;
+    }
 }
