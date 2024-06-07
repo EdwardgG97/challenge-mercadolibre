@@ -15,7 +15,7 @@ public class OpenApiConfig {
                 .components(new Components())
                 .info(new Info()
                         .title("Challenge API")
-                        .description("This is a sample Spring Boot RESTfull service using OpenAPI 3.")
+                        .description("Challenge for MercadoLibre - OpenApi 3")
                         .version("1.0.0"));
     }
 }

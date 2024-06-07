@@ -1,6 +1,6 @@
 package com.mercadolibre.challenge.repository;
 
-import com.mercadolibre.challenge.Entity.CountryEntity;
+import com.mercadolibre.challenge.entity.CountryEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

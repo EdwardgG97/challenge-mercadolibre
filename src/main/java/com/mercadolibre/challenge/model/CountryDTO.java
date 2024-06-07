@@ -1,51 +1,32 @@
 package com.mercadolibre.challenge.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.List;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-public class CountryDTO implements Serializable {
+public record CountryDTO(
+        String ip,
+        @JsonProperty("country_code") String countryCode,
+        @JsonProperty("country_name") String countryName,
+        double latitude,
+        double longitude,
+        LocationDTO location,
+        ErrorDTO error
+) implements Serializable {
 
-    private String ip;
+    public record LocationDTO(
+            List<LanguageDTO> languages
+    ) {}
 
-    @JsonProperty("country_code")
-    private String countryCode;
+    public record LanguageDTO(
+            String code,
+            String name
+    ) {}
 
-    @JsonProperty("country_name")
-    private String countryName;
-
-    private double latitude;
-    private double longitude;
-    private LocationDTO location;
-    private ErrorDTO error;
-
-    @Getter
-    @Setter
-    public static class LocationDTO {
-        private List<LanguageDTO> languages;
-    }
-
-    @Getter
-    @Setter
-    public static class LanguageDTO {
-        private String code;
-        private String name;
-    }
-
-    @Getter
-    @Setter
-    public static class ErrorDTO {
-        private Integer code;
-        private String info;
-    }
+    public record ErrorDTO(
+            Integer code,
+            String info
+    ) {}
 }
 

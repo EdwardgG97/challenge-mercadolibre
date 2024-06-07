@@ -1,0 +1,94 @@
+{
+	"info": {
+		"_postman_id": "0cecb0ee-464a-4cb4-8d9d-8c64144f3443",
+		"name": "Challenge-Mercadolibre",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3846665"
+	},
+	"item": [
+		{
+			"name": "FindByIp",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/challenge-mercadolibre/api/ip/104.239.73.0",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"challenge-mercadolibre",
+						"api",
+						"ip",
+						"104.239.73.0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cercano",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/challenge-mercadolibre/api/statistics/closest",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"challenge-mercadolibre",
+						"api",
+						"statistics",
+						"closest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lejano",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/challenge-mercadolibre/api/statistics/farthest",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"challenge-mercadolibre",
+						"api",
+						"statistics",
+						"farthest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Promedio",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/challenge-mercadolibre/api/statistics/average",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"challenge-mercadolibre",
+						"api",
+						"statistics",
+						"average"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

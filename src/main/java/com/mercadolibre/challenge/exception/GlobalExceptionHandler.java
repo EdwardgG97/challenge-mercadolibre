@@ -18,7 +18,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(IpNotFoundException.class)
     public ResponseEntity<ResponseDTO> handleIpNotFoundException(IpNotFoundException ex) {
         log.error("[[Error IpNotFoundException]] {}", ex.getMessage());
-        return new ResponseEntity<>(new ResponseDTO(INVALID_IP_ADDRESS.getMsg()), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(new ResponseDTO(IP_NOT_FOUND.getMsg()), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(AccessKeyException.class)

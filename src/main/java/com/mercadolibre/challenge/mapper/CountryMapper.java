@@ -1,7 +1,7 @@
 package com.mercadolibre.challenge.mapper;
 
-import com.mercadolibre.challenge.Entity.CountryEntity;
-import com.mercadolibre.challenge.Entity.LanguageEntity;
+import com.mercadolibre.challenge.entity.CountryEntity;
+import com.mercadolibre.challenge.entity.LanguageEntity;
 import com.mercadolibre.challenge.model.CountryDTO;
 import com.mercadolibre.challenge.model.CountryResponseDTO;
 import com.mercadolibre.challenge.model.LanguageResponseDTO;
@@ -33,18 +33,18 @@ public class CountryMapper {
 
     public CountryEntity dtoToEntity(CountryDTO dto) {
         var entity = new CountryEntity();
-        entity.setIp(dto.getIp());
+        entity.setIp(dto.ip());
         entity.setCreate(LocalDateTime.now());
-        entity.setDistance(Utils.calculateDistance(dto.getLatitude(), dto.getLongitude()));
-        entity.setCountryCode(dto.getCountryCode());
-        entity.setCountryName(dto.getCountryName());
-        entity.setLatitude(dto.getLatitude());
-        entity.setLongitude(dto.getLongitude());
-        entity.setLanguagesEntity(dto.getLocation().getLanguages().stream()
+        entity.setDistance(Utils.calculateDistance(dto.latitude(), dto.longitude()));
+        entity.setCountryCode(dto.countryCode());
+        entity.setCountryName(dto.countryName());
+        entity.setLatitude(dto.latitude());
+        entity.setLongitude(dto.longitude());
+        entity.setLanguagesEntity(dto.location().languages().stream()
                 .map(languageDTO -> {
             var languageEntity = new LanguageEntity();
-            languageEntity.setCode(languageDTO.getCode());
-            languageEntity.setName(languageDTO.getName());
+            languageEntity.setCode(languageDTO.code());
+            languageEntity.setName(languageDTO.name());
             languageEntity.setCountry(entity);
             return languageEntity;
         }).collect(Collectors.toList()));

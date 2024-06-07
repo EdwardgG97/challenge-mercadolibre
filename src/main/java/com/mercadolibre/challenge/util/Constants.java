@@ -8,10 +8,10 @@ public enum Constants {
     ACCESS_KEY("access_key"),
     LANGUAGE("language"),
     ES("es"),
-    INVALID_IP_ADDRESS("Invalid ip address"),
+    IP_NOT_FOUND("IP not found"),
     INVALID_ACCESS_KEY("Invalid access key"),
     INVALID_IP_FORMAT("Invalid IP address format"),
-    UNKNOWN_ERROR("Ocurrió un error inesperado"),
+    UNKNOWN_ERROR("Unexpected error"),
     COUNTRY_NOT_FOUND("No se encontraron registros en la base de datos");
 
     private final String msg;

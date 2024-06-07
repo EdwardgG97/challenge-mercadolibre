@@ -1,4 +1,4 @@
-package com.mercadolibre.challenge.Entity;
+package com.mercadolibre.challenge.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;

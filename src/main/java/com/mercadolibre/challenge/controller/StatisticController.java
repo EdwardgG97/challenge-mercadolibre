@@ -1,6 +1,6 @@
 package com.mercadolibre.challenge.controller;
 
-import com.mercadolibre.challenge.model.AverageDTO;
+import com.mercadolibre.challenge.model.AverageResponseDTO;
 import com.mercadolibre.challenge.model.CountryResponseDTO;
 import com.mercadolibre.challenge.service.StatisticService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -8,13 +8,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
-@Validated
 @RequiredArgsConstructor
 @RequestMapping("api/statistics")
 @RestController
@@ -38,7 +36,7 @@ public class StatisticController {
 
     @Operation(summary = "Distancia promedio de las consultas por Ip")
     @GetMapping(path = "average", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AverageDTO> average() {
+    public ResponseEntity<AverageResponseDTO> average() {
         log.info("[[Average Request started]]");
         return ResponseEntity.ok(statisticService.average());
     }
